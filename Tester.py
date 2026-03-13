@@ -1,7 +1,6 @@
 import numpy as np
 import time
-from Plotter import Plot   # غير الاسم لو الملف اسمه حاجة تانية
-
+from Plotter import Plot   
 dt = 0.05
 
 plotter = Plot(dt)
