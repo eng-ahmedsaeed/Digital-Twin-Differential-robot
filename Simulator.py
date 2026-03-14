@@ -1,5 +1,6 @@
 import numpy as np
 import time
+from vsi import gateway
 #Robot class
 class Robot :
     def __init__(self,x,y,theta):
@@ -9,7 +10,7 @@ class Robot :
          #here i will inser some noise and disterbunce in  the reading of y to 
         #simulate the real world noise which is commonly with +0.2 or -0.2
     def get_pos(self):
-        return self.__x*np.random.normal(0,0.2),self.__y*np.random.normal(0,0.2)
+        return self.__x,self.__y,self.__theta
     def set_pos(self,x,y):
         self.__x=x
         self.__y=y
@@ -51,13 +52,19 @@ class Simulator:
                     
     def step(self,v,omega):
         self.robot.move(v,omega,self.dt)
-        x,y = self.robot.get_pos()
+        x,y,theta = self.robot.get_pos()
         if(self.path_type=="straight"):
             y_ref =self.path.straight_Path(x)
         else:
             y_ref=self.path.Curved_Path(x)
         
-        return x,y,y_ref
+        
+        if y_ref is None:
+         y_ref = 0
+
+         x_ref = x
+        
+        return x_ref,y_ref
 
     def run(self):
 
@@ -66,14 +73,33 @@ class Simulator:
 
             while True:
 
-                x, y, y_ref = self.step(v, omega)
+                x_ref, y_ref = self.step(v, omega)
+                x,y,theta =self.robot.get_pos()
 
-                print("robot X Coordinate", x,"robot Y Coordinate", y,"Path Y Coordinate", y_ref)   
+                print("robot X Coordinate", x,"robot Y Coordinate", y,"Path Y Coordinate","Path X X Coordinate", y_ref,x_ref)   
                 time.sleep(self.dt)
 
 
+def main():
+    sim =Simulator("straight",0.01)
+    port=gateway.openPort("Simulator")
+    while True:
+        msg=port.read()
+        v=msg["v"]
+        omega=msg["omega"]
+        x_ref,y_ref=sim.step(v,omega)
+    
+        
+        x_robot, y_robot,theta=sim.robot.get_pos() 
+
+       
+        port.write({
+            "x_robot": x_robot,
+            "y_robot": y_robot,
+            "theta": theta,
+            "x_path":x_ref,
+            "y_path": y_ref
+        })
 if __name__ == "__main__":
 
-    sim = Simulator("curved", 1)
-
-    sim.run()
+    main()

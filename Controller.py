@@ -1,4 +1,5 @@
 import numpy as np
+from vsi import gateway
 class PID:
     def __init__(self,Kp,Kd,Ki,dt):
         self.Kp = Kp
@@ -34,6 +35,23 @@ class Controler:
         self.v = max(0.1 , self.v)
         
         return self.v,self.omega
+    
+
+def main():
+    cont= Controler(5,10,12,0.01)
+    port=gateway.openPort("Controller")
+    msg=port.read()
+    x_robot=msg[x_robot]
+    y_robot=msg[y_robot]
+    x_path=msg[x_path]
+    y_path=msg[y_path]
+    while True:
+        v,omega =cont.Control(y_robot,y_path)
+        port.write({
+            "v":v,
+            "omega":omega
+
+        })
         
 
 
