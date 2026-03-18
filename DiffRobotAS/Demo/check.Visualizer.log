@@ -1,0 +1,66 @@
+Script started on 2026-03-18 09:21:54+00:00 [TERM="xterm" TTY="/dev/pts/8" COLUMNS="80" LINES="24"]
+make[1]: Entering directory '/data/tools/pave/innexis_home/vsi_2025.2/examples/vsiTutorials/DiffRobotAS/Demo'
+python3 .//src/Visualizer/Visualizer.py --domain="AF_UNIX" --server-url="localhost"
+pygame 2.6.1 (SDL 2.28.4, Python 3.10.12)
+Hello from the pygame community. https://www.pygame.org/contribute.html
++=+ XLVIP-INFO: XlTlmMessageLayer::connectToServer():
++=+    Connecting clientId=':remoteSession2' to 'server@localhost' ...
++=+    Successfully connected 'client :remoteSession2' to 'server@localhost'
++=+    Negotiated socket connection configuration
++=+        Use socket manager thread=FALSE
++=+        Use TCP_NODELAY=TRUE
++=+        Use UDP=FALSE
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:timeServerConduit2
+           localClientConduitHandle=0x5f12799ba4d8
+           remoteServerProxyConduitHandle=0x330fe070
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:resetServerConduit2
+           localClientConduitHandle=0x5f1279972748
+           remoteServerProxyConduitHandle=0x330fa6a0
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:txConfigPort2
+           localClientConduitHandle=0x5f127996a900
+           remoteServerProxyConduitHandle=0x3310cc90
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:rxConfigPort2
+           localClientConduitHandle=0x5f12798f7140
+           remoteServerProxyConduitHandle=0x33109070
++=+ INFO: ... successfully connected to TLM FabricServer !
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:txEtherFrameConduit2
+           localClientConduitHandle=0x5f127996f0c0
+           remoteServerProxyConduitHandle=0x33102330
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession2
++=+        conduitId=:rxEtherFrameConduit2
+           localClientConduitHandle=0x5f12798f5950
+           remoteServerProxyConduitHandle=0x331059a0
+Received packet from Simulator
+
++=Visualizer+=
+  VSI time: 200720 ns
+  Inputs:
+	x_robot = 1.20971472562596
+	y_robot = 1.0331434391335872
+	theta = 5.474565767215198
+	x_path = 2.20971472562596
+	y_path = 1.0
+	x_path_curr = 1.20971472562596
+	y_path_curr = 1.0
+	v = 0
+	omega = 0
+
+
+

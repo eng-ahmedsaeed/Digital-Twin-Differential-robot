@@ -1,0 +1,69 @@
+-N
+0 Simulator 1
+x_robot double o 2
+y_robot double o 2
+theta double o 2
+x_path double o 2
+y_path double o 2
+x_path_curr double o 1
+y_path_curr double o 1
+v double i 1
+omega double i 1
+-N
+1 Controller 1
+x_robot double i 1
+y_robot double i 1
+theta double i 1
+x_path double i 1
+y_path double i 1
+v double o 2
+omega double o 2
+-N
+2 Visualizer 1
+x_robot double i 1
+y_robot double i 1
+theta double i 1
+x_path double i 1
+y_path double i 1
+x_path_curr double i 1
+y_path_curr double i 1
+v double i 1
+omega double i 1
+-ETH
+0 12:34:56:78:9a:ba
+1 12:34:56:78:9a:bb
+2 12:34:56:78:9a:bc
+-C
+o 0 x_robot 1 x_robot
+o 0 x_robot 2 x_robot
+o 0 y_robot 1 y_robot
+o 0 y_robot 2 y_robot
+o 0 theta 1 theta
+o 0 theta 2 theta
+o 0 x_path 1 x_path
+o 0 x_path 2 x_path
+o 0 y_path 1 y_path
+o 0 y_path 2 y_path
+o 0 x_path_curr 2 x_path_curr
+o 0 y_path_curr 2 y_path_curr
+i 0 v 1 v
+i 0 omega 1 omega
+i 1 x_robot 0 x_robot
+i 1 y_robot 0 y_robot
+i 1 theta 0 theta
+i 1 x_path 0 x_path
+i 1 y_path 0 y_path
+o 1 v 0 v
+o 1 v 2 v
+o 1 omega 0 omega
+o 1 omega 2 omega
+i 2 x_robot 0 x_robot
+i 2 y_robot 0 y_robot
+i 2 theta 0 theta
+i 2 x_path 0 x_path
+i 2 y_path 0 y_path
+i 2 x_path_curr 0 x_path_curr
+i 2 y_path_curr 0 y_path_curr
+i 2 v 1 v
+i 2 omega 1 omega
+-END

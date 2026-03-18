@@ -1,0 +1,66 @@
+add component -type Python -name Simulator
+
+add port -componentName Simulator -name Simulator -gateway python2DtEthernet
+config port -componentName Simulator -portName Simulator -macAddress 12:34:56:78:9A:BA -ipAddress 192.168.1.2
+
+add portSocket -componentName Simulator -portName Simulator -ipPortNum 8070 -socketType server -protocol tcpIp
+add portSocket -componentName Simulator -portName Simulator -ipPortNum 8071 -socketType server -protocol tcpIp
+
+define componentSignals -componentName Simulator -signals "[v:double:input,omega:double:input,x_robot:double:output,y_robot:double:output,theta:double:output,x_path:double:output,x_path_curr:double:output,y_path:double:output,y_path_curr:double:output]"
+
+
+
+add component -type Python -name Controller
+
+add port -componentName Controller -name Controller -gateway python2DtEthernet
+config port -componentName Controller -portName Controller -macAddress 12:34:56:78:9A:BB -ipAddress 192.168.1.3
+
+add portSocket -componentName Controller -portName Controller -ipPortNum 8070 -socketType client -protocol tcpIp
+add portSocket -componentName Controller -portName Controller -ipPortNum 8072 -socketType server -protocol tcpIp
+
+define componentSignals -componentName Controller -signals "[v:double:output,omega:double:output,x_robot:double:input,y_robot:double:input,theta:double:input,x_path:double:input,y_path:double:input]"
+
+
+
+add component -type Python -name Visualizer
+
+add port -componentName Visualizer -name Visualizer -gateway python2DtEthernet
+config port -componentName Visualizer -portName Visualizer -macAddress 12:34:56:78:9A:BC -ipAddress 192.168.1.4
+
+add portSocket -componentName Visualizer -portName Visualizer -ipPortNum 8071 -socketType client -protocol tcpIp
+add portSocket -componentName Visualizer -portName Visualizer -ipPortNum 8072 -socketType client -protocol tcpIp
+
+define componentSignals -componentName Visualizer -signals "[x_robot:double:input,y_robot:double:input,theta:double:input,x_path:double:input,y_path:double:input,x_path_curr:double:input,y_path_curr:double:input,v:double:input,omega:double:input]"
+
+
+
+## Connections
+
+connect signals -sourceSignal Simulator.x_robot -destSignal Controller.x_robot -sourcePortName Simulator -destPortName Controller
+connect signals -sourceSignal Simulator.y_robot -destSignal Controller.y_robot -sourcePortName Simulator -destPortName Controller
+connect signals -sourceSignal Simulator.theta -destSignal Controller.theta -sourcePortName Simulator -destPortName Controller
+connect signals -sourceSignal Simulator.x_path -destSignal Controller.x_path -sourcePortName Simulator -destPortName Controller
+connect signals -sourceSignal Simulator.y_path -destSignal Controller.y_path -sourcePortName Simulator -destPortName Controller
+
+
+connect signals -sourceSignal Controller.v -destSignal Simulator.v -sourcePortName Controller -destPortName Simulator
+connect signals -sourceSignal Controller.omega -destSignal Simulator.omega -sourcePortName Controller -destPortName Simulator
+
+
+connect signals -sourceSignal Simulator.x_robot -destSignal Visualizer.x_robot -sourcePortName Simulator -destPortName Visualizer
+connect signals -sourceSignal Simulator.y_robot -destSignal Visualizer.y_robot -sourcePortName Simulator -destPortName Visualizer
+connect signals -sourceSignal Simulator.theta -destSignal Visualizer.theta -sourcePortName Simulator -destPortName Visualizer
+connect signals -sourceSignal Simulator.x_path -destSignal Visualizer.x_path -sourcePortName Simulator -destPortName Visualizer
+connect signals -sourceSignal Simulator.y_path -destSignal Visualizer.y_path -sourcePortName Simulator -destPortName Visualizer
+
+connect signals -sourceSignal Simulator.x_path_curr -destSignal Visualizer.x_path_curr -sourcePortName Simulator -destPortName Visualizer
+connect signals -sourceSignal Simulator.y_path_curr -destSignal Visualizer.y_path_curr -sourcePortName Simulator -destPortName Visualizer
+
+connect signals -sourceSignal Controller.v -destSignal Visualizer.v -sourcePortName Controller -destPortName Visualizer
+connect signals -sourceSignal Controller.omega -destSignal Visualizer.omega -sourcePortName Controller -destPortName Visualizer
+
+set totalSimTime 70 s
+set simulationStep 0.1 s  
+set workspaceDir .
+set digitalTwinName Demo   
+generate

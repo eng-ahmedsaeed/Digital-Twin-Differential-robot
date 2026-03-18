@@ -1,0 +1,63 @@
+Script started on 2026-03-18 09:21:54+00:00 [TERM="xterm" TTY="/dev/pts/6" COLUMNS="80" LINES="24"]
+make[1]: Entering directory '/data/tools/pave/innexis_home/vsi_2025.2/examples/vsiTutorials/DiffRobotAS/Demo'
+python3 .//src/Controller/Controller.py --domain="AF_UNIX" --server-url="localhost"
++=+ XLVIP-INFO: XlTlmMessageLayer::connectToServer():
++=+    Connecting clientId=':remoteSession1' to 'server@localhost' ...
++=+    Successfully connected 'client :remoteSession1' to 'server@localhost'
++=+    Negotiated socket connection configuration
++=+        Use socket manager thread=FALSE
++=+        Use TCP_NODELAY=TRUE
++=+        Use UDP=FALSE
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:timeServerConduit1
+           localClientConduitHandle=0x5f10a2466988
+           remoteServerProxyConduitHandle=0x330e83b0
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:resetServerConduit1
+           localClientConduitHandle=0x5f10a230bfa8
+           remoteServerProxyConduitHandle=0x330e45c0
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:txConfigPort1
+           localClientConduitHandle=0x5f10a23ef8a0
+           remoteServerProxyConduitHandle=0x330f6c30
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:rxConfigPort1
+           localClientConduitHandle=0x5f10a240c470
+           remoteServerProxyConduitHandle=0x330f3010
++=+ INFO: ... successfully connected to TLM FabricServer !
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:txEtherFrameConduit1
+           localClientConduitHandle=0x5f10a22772a0
+           remoteServerProxyConduitHandle=0x330ebed0
++=+ XLVIP-INFO: XlTlmMessageLayer::connect():
++=+    Successfully connected this remote client conduit into the TLM fabric server:
++=+        clientId=:remoteSession1
++=+        conduitId=:rxEtherFrameConduit1
+           localClientConduitHandle=0x5f10a21e95a0
+           remoteServerProxyConduitHandle=0x330ef990
+
++=Controller+=
+  VSI time: 200720 ns
+  Inputs:
+	x_robot = 0
+	y_robot = 0
+	theta = 0
+	x_path = 0
+	y_path = 0
+  Outputs:
+	v = 1.0
+	omega = 0.0
+
+
+
+make[1]: Leaving directory '/data/tools/pave/innexis_home/vsi_2025.2/examples/vsiTutorials/DiffRobotAS/Demo'
